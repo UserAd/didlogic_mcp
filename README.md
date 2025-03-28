@@ -15,40 +15,57 @@ A Model Context Protocol (MCP) server implementation for the Didlogic API. This 
 
 ## Installation
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Using uv (recommended)
+
+When using [`uv`](https://docs.astral.sh/uv/) no specific installation is needed. We will
+use [`uvx`](https://docs.astral.sh/uv/guides/tools/) to directly run *didlogic_mcp*.
+
+### Using PIP
+
+Alternatively you can install `didlogic_mcp` via pip:
+
+```bash
+pip install didlogic_mcp
+```
+
+After installation, you can run it as a script using:
+
+```bash
+DIDLOGIC_API_KEY=YOUR_DIDLOGIC_KEY python -m didlogic_mcp
+```
 
 ## Configuration
 
-Set your Didlogic API key:
+### Configure for Claude.app
 
-```bash
-export DIDLOGIC_API_KEY="your-api-key"
+Add to your Claude settings:
+
+#### Using uvx
+
+```json
+"mcpServers": {
+  "didlogic": {
+    "command": "uvx",
+    "args": ["didlogic_mcp"],
+    "env": {
+      "DIDLOGIC_API_KEY": "YOUR_DIDLOGIC_KEY"
+    }
+  }
+}
 ```
 
-## Running the Server
+#### Using pip installation
 
-Start the server:
-
-```bash
-python -m didlogic_mcp
-```
-
-For development mode:
-
-```bash
-mcp dev didlogic_mcp/server.py
-```
-
-## Using with Claude Desktop
-
-Install the server in Claude Desktop:
-
-```bash
-mcp install didlogic_mcp/server.py -v DIDLOGIC_API_KEY="your-api-key"
+```json
+"mcpServers": {
+  "didlogic": {
+    "command": "python",
+    "args": ["-m", "didlogic_mcp"],
+    "env": {
+      "DIDLOGIC_API_KEY": "YOUR_DIDLOGIC_KEY"
+    }
+  }
+}
 ```
 
 ## License
