@@ -37,14 +37,7 @@ async def didlogic_lifespan(server: FastMCP) -> DidlogicContext:
     }
 
     async with httpx.AsyncClient(base_url=BASE_URL, headers=headers) as client:
-        # Test connection by checking balance
-        try:
-            response = await client.get("/v1/balance")
-            response.raise_for_status()
-            print(f"Connected to Didlogic API. Balance: {response.text}")
-        except Exception as e:
-            print(f"Failed to connect to Didlogic API: {e}")
-
+        print("Running server in standard mode...")
         yield DidlogicContext(client=client)
 
 
