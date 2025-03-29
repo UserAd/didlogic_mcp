@@ -5,29 +5,45 @@ from pydantic import Field
 
 
 def register_tools(mcp: FastMCP):
-    @mcp.tool(description="List DIDLogic SIP account allowed IP list")
+    @mcp.tool()
     async def get_allowed_ips(
             ctx: Context,
-            sipaccount_name: str | int = Field(
-                description="Name of sip account"
-            )
+            sipaccount_name: str | int = Field()
     ) -> Dict:
-        """Get list of allowed IPs for a SIP account"""
+        """
+            Get list of whitelisted IPs for a SIP account
+
+            Args:
+                sipaccount_name: Name of SIP account
+
+            Returns a JSON object with array of whitelisted IP for SIP Account
+            Example output: { "allowed_ips": [ "88.99.12.33" ] }
+        """
         response = await base.call_didlogic_api(
             ctx, "GET",
             f"/v1/sipaccounts/{sipaccount_name}/allowed_ips"
         )
         return response.json()
 
-    @mcp.tool(description="Add IP to allowed list for DIDLogic SIP account")
+    @mcp.tool()
     async def add_allowed_ip(ctx: Context,
                              sipaccount_name: str | int = Field(
                                  description="Name of sip account"
                              ),
                              ip: str = Field(
-                                 description="IP to allow")
+                                 description="IP address to allow")
                              ) -> Dict:
-        """Add an allowed IP to a SIP account"""
+        """
+            Whitelist an IP to a SIP account
+
+            Args:
+                sipaccount_name: Name of SIP account
+                ip: IP address to allow
+
+            Returns a JSON object with all whitelisted IP addresses for account
+            Example output: { "allowed_ips": [ "88.99.12.33", "99.33.55.11" ] }
+
+        """
         data = {"ip": ip}
         response = await base.call_didlogic_api(
             ctx,
@@ -37,17 +53,23 @@ def register_tools(mcp: FastMCP):
         )
         return response.json()
 
-    @mcp.tool(
-        description="Delete IP from allowed list for DIDLogic SIP account"
-    )
+    @mcp.tool()
     async def delete_allowed_ip(
             ctx: Context,
             sipaccount_name: str | int = Field(
                 description="Name of sip account"
             ),
-            ip: str = Field(description="IP address")
+            ip: str = Field(description="IP address to remove from whitelist")
     ) -> str:
-        """Delete an allowed IP from a SIP account"""
+        """
+            Delete an whitelisted IP from a SIP account
+
+            Args:
+                sipaccount_name: Name of SIP account
+                ip: IP address to remove from whitelist
+
+            Returns "IP removed successfully" when IP removed from whitelisted
+        """
         params = {"ip": ip}
         await base.call_didlogic_api(
             ctx,
