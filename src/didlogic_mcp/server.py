@@ -43,8 +43,8 @@ async def didlogic_lifespan(server: FastMCP) -> DidlogicContext:
 
 # Create MCP Server
 mcp = FastMCP(
-    "Didlogic API",
-    description="MCP Server for Didlogic API integration",
+    name="Didlogic API",
+    instructions="MCP Server for Didlogic API integration",
     lifespan=didlogic_lifespan,
     dependencies=["httpx>=0.24.0"]
 )
