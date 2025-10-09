@@ -151,15 +151,15 @@ def create_app_with_middleware(transport: str = "streamable-http"):
     else:
         mcp_app = mcp.streamable_http_app()
 
-    # Wrap with Starlette and add middleware
+    # Wrap with Starlette
     app = Starlette(
         routes=[
             Mount("/", app=mcp_app),
         ],
     )
 
-    # Add Bearer auth middleware
-    app.add_middleware(BearerAuthMiddleware)
+    # Wrap with Bearer auth middleware (pure ASGI middleware for SSE compatibility)
+    app = BearerAuthMiddleware(app)
 
     logger.info(f"{transport.upper()} app created with Bearer auth middleware")
     return app
