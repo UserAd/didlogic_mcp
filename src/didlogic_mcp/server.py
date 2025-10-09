@@ -19,6 +19,10 @@ from dataclasses import dataclass
 from mcp.server.fastmcp import FastMCP
 import didlogic_mcp.tools as tools
 import didlogic_mcp.prompts as prompts
+from starlette.applications import Starlette
+from starlette.routing import Mount
+from didlogic_mcp.auth import BearerAuthMiddleware
+
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -65,8 +69,6 @@ async def didlogic_lifespan(server: FastMCP) -> DidlogicContext:
     - http/sse: Creates client without auth (auth added per-request via middleware)
     """
     api_key = get_api_key_for_request(server)
-
-    print(f'API_KEUY: {api_key}')
 
     headers = {
         'User-Agent': 'DidlogicMCP 1.0',
@@ -143,10 +145,6 @@ def create_app_with_middleware(transport: str = "streamable-http"):
     Returns:
         Starlette app with middleware
     """
-    from starlette.applications import Starlette
-    from starlette.routing import Mount
-    from didlogic_mcp.auth import BearerAuthMiddleware
-
     # Get the appropriate MCP app
     if transport == "sse":
         mcp_app = mcp.sse_app()
