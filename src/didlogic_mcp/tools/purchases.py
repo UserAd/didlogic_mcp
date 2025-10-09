@@ -77,7 +77,7 @@ def register_tools(mcp: FastMCP):
             "/v1/purchases",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def list_destinations(
@@ -123,7 +123,7 @@ def register_tools(mcp: FastMCP):
             "GET",
             f"/v1/purchases/{number}/destinations"
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def add_destination(
@@ -188,7 +188,7 @@ def register_tools(mcp: FastMCP):
             ctx, "POST", f"/v1/purchases/{number}/destinations",
             data=data
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def delete_destination(
