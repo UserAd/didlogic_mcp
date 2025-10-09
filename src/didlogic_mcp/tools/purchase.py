@@ -53,7 +53,7 @@ def register_tools(mcp: FastMCP):
             "/v2/buy/countries",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def list_country_regions(
@@ -100,7 +100,7 @@ def register_tools(mcp: FastMCP):
             f"/v2/buy/countries/{country_id}/regions",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def list_country_cities(
@@ -150,7 +150,7 @@ def register_tools(mcp: FastMCP):
             f"/v2/buy/countries/{country_id}/cities",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def list_country_cities_in_region(
@@ -202,7 +202,7 @@ def register_tools(mcp: FastMCP):
             f"/v2/buy/countries/{country_id}/regions/{region_id}/cities",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def list_dids_in_country_city(
@@ -286,6 +286,8 @@ def register_tools(mcp: FastMCP):
         """
 
         params = {}
+        if sms_enabled is not None:
+            params["sms_enabled"] = int(sms_enabled)
         if page is not None:
             params["page"] = page
         if per_page is not None:
@@ -296,7 +298,7 @@ def register_tools(mcp: FastMCP):
             f"/v2/buy/countries/{country_id}/cities/{city_id}/dids",
             params=params
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def purchase_did(
@@ -363,7 +365,7 @@ def register_tools(mcp: FastMCP):
             "/v2/buy/purchase",
             data={"did_numbers": number}
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def remove_purchased_did(
@@ -427,4 +429,4 @@ def register_tools(mcp: FastMCP):
             "/v2/buy/purchase",
             data={"did_numbers": number}
         )
-        return response.json()
+        return response.text

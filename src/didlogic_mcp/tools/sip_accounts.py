@@ -62,7 +62,7 @@ def register_tools(mcp: FastMCP):
             ```
         """
         response = await base.call_didlogic_api(ctx, "GET", "/v1/sipaccounts")
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def get_sip_account(
@@ -128,7 +128,7 @@ def register_tools(mcp: FastMCP):
         response = await base.call_didlogic_api(
             ctx, "GET", f"/v1/sipaccounts/{name}"
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def create_sip_account(
@@ -253,26 +253,26 @@ def register_tools(mcp: FastMCP):
 
         # Add optional parameters if provided
         if didinfo_enabled is not None:
-            data["sipaccount[didinfo_enabled]"] = didinfo_enabled
+            data["sipaccount[didinfo_enabled]"] = int(didinfo_enabled)
         if ip_restrict is not None:
-            data["sipaccount[ip_restrict]"] = ip_restrict
+            data["sipaccount[ip_restrict]"] = int(ip_restrict)
         if call_restrict is not None:
-            data["sipaccount[call_restrict]"] = call_restrict
+            data["sipaccount[call_restrict]"] = int(call_restrict)
         if call_limit is not None:
             data["sipaccount[call_limit]"] = call_limit
         if channels_restrict is not None:
-            data["sipaccount[channels_restrict]"] = channels_restrict
+            data["sipaccount[channels_restrict]"] = int(channels_restrict)
         if max_channels is not None:
             data["sipaccount[max_channels]"] = max_channels
         if cost_limit is not None:
-            data["sipaccount[cost_limit]"] = cost_limit
+            data["sipaccount[cost_limit]"] = int(cost_limit)
         if max_call_cost is not None:
             data["sipaccount[max_call_cost]"] = max_call_cost
 
         response = await base.call_didlogic_api(
             ctx, "POST", "/v1/sipaccounts", data=data
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def update_sip_account(
@@ -429,7 +429,7 @@ def register_tools(mcp: FastMCP):
         response = await base.call_didlogic_api(
             ctx, "PUT", f"/v1/sipaccounts/{name}", data=data
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def delete_sip_account(

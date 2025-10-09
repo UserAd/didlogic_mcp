@@ -12,10 +12,10 @@ def register_tools(mcp: FastMCP):
             description="Type of call, can be sip or incoming", default=None
         ),
         from_date: Optional[str] = Field(
-            description="From date in format YYYY-MM-DD", Default=None
+            description="From date in format YYYY-MM-DD", default=None
         ),
         to_date: Optional[str] = Field(
-            description="To date in format YYYY-MM-DD", Default=None
+            description="To date in format YYYY-MM-DD", default=None
         ),
         number: Optional[str | int] = Field(
             description="Number for search, E164 format", default=None
@@ -118,4 +118,4 @@ def register_tools(mcp: FastMCP):
             params=params
         )
 
-        return response.json()
+        return response.text

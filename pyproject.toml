@@ -24,3 +24,6 @@ dependencies = [
 
 [project.scripts]
 didlogic_mcp = "didlogic_mcp:server"
+
+[tool.mypy]
+disable_error_code = ["import-untyped"]

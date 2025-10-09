@@ -1,6 +1,5 @@
 from mcp.server.fastmcp import FastMCP, Context
 from . import base
-from typing import Dict
 from pydantic import Field
 
 
@@ -9,7 +8,7 @@ def register_tools(mcp: FastMCP):
     async def get_allowed_ips(
             ctx: Context,
             sipaccount_name: str | int = Field()
-    ) -> Dict:
+    ) -> str:
         """
             Get list of whitelisted IPs for a SIP account
 
@@ -23,7 +22,7 @@ def register_tools(mcp: FastMCP):
             ctx, "GET",
             f"/v1/sipaccounts/{sipaccount_name}/allowed_ips"
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def add_allowed_ip(ctx: Context,
@@ -32,7 +31,7 @@ def register_tools(mcp: FastMCP):
                              ),
                              ip: str = Field(
                                  description="IP address to allow")
-                             ) -> Dict:
+                             ) -> str:
         """
             Whitelist an IP to a SIP account
 
@@ -51,7 +50,7 @@ def register_tools(mcp: FastMCP):
             f"/v1/sipaccounts/{sipaccount_name}/allowed_ips",
             data=data
         )
-        return response.json()
+        return response.text
 
     @mcp.tool()
     async def delete_allowed_ip(

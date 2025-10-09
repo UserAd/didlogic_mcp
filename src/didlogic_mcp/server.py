@@ -130,8 +130,8 @@ def configure_http_server(host: str = "127.0.0.1", port: int = 8000):
         host: Host to bind to
         port: Port to bind to
     """
-    mcp.host = host
-    mcp.port = port
+    mcp.settings.host = host
+    mcp.settings.port = port
     logger.info(f"HTTP server configured for {host}:{port}")
 
 
