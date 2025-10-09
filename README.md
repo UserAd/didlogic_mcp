@@ -135,6 +135,23 @@ Add to your Claude settings:
 }
 ```
 
+### Configure for Claude Code
+
+For Claude Code, you can connect to a running SSE server instance:
+
+```bash
+claude mcp add didlogic --transport sse http://localhost:8000/sse --header "Authorization: Bearer YOUR_DIDLOGIC_API_KEY"
+```
+
+**Prerequisites:**
+1. Start the server in SSE mode: `python -m didlogic_mcp --transport sse`
+2. Run the above command, replacing `YOUR_DIDLOGIC_API_KEY` with your actual API key
+3. The server must be running and accessible at the specified URL
+
+**Custom configuration:**
+- To use a different port: Change `http://localhost:8000/sse` to match your server's PORT setting
+- To connect to a remote server: Replace `localhost` with the server's hostname or IP address
+
 ## License
 
 MIT
