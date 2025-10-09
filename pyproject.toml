@@ -16,7 +16,7 @@ authors = [
     { name = "Konstantin Tumalevich", email = "userad@gmail.com" }
 ]
 dependencies = [
-    "mcp @ git+https://github.com/modelcontextprotocol/python-sdk.git",
+    "mcp>=1.16.0",
     "httpx>=0.28.1",
     "pydantic>=2.10.6",
     "pydantic-settings>=2.8.1",
