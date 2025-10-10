@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/userad-didlogic-mcp-badge.png)](https://mseep.ai/app/userad-didlogic-mcp)
+
 # Didlogic MCP Server
 
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/UserAd/didlogic_mcp)](https://archestra.ai/mcp-catalog/userad__didlogic_mcp)
