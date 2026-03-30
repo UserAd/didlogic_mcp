@@ -3,6 +3,10 @@
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/UserAd/didlogic_mcp)](https://archestra.ai/mcp-catalog/userad__didlogic_mcp)
 A Model Context Protocol (MCP) server implementation for the Didlogic API. This server allows Large Language Models (LLMs) to interact with Didlogic services through a standardized interface.
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/userad-didlogic-mcp).
+
 ## Features
 
 - Full access to Didlogic API through MCP tools
