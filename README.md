@@ -1,5 +1,11 @@
 # Didlogic MCP Server
 
+> [!WARNING]
+> **This project is archived and no longer maintained.** It has been superseded by the official Didlogic MCP server:
+>
+> - Hosted server: https://mcp.didlogic.com
+> - Source: https://github.com/didlogic-cy/didlogic-mcp
+
 [![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/UserAd/didlogic_mcp)](https://archestra.ai/mcp-catalog/userad__didlogic_mcp)
 A Model Context Protocol (MCP) server implementation for the Didlogic API. This server allows Large Language Models (LLMs) to interact with Didlogic services through a standardized interface.
 
